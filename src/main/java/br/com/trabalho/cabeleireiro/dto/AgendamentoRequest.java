@@ -1,3 +1,5 @@
+//importando pacotes necessários
+
 package br.com.trabalho.cabeleireiro.dto;
 
 import java.time.LocalDateTime;
@@ -5,26 +7,29 @@ import java.time.LocalDateTime;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
-// Este objeto representa os dados que o usuario envia
-// para criar ou atualizar um agendamento.
+
+//DTO = Data Transfer Object. Um objeto que carrega os dados necessarios, neste caso, do agendamento. Somente guarda informação
+//Este objeto representa os dados que o usuario envia para realizar ou atualizar um agendamento
+
 public class AgendamentoRequest {
     // Identifica qual cliente esta marcando o horario.
-    @NotNull(message = "Cliente e obrigatorio")
-    private Long clienteId;
+    @NotNull(message = "Cliente é obrigatorio") //garante que o cliente seja informado na requisicao, sem ser nulo
+    private Long clienteId;     //private long = atributo numérico com valor grande.
 
-    // Identifica qual servico sera realizado.
-    @NotNull(message = "Servico e obrigatorio")
+    // Identifica qual servico sera realizado - corte, hidratacao, etc...
+    @NotNull(message = "Servico é obrigatorio") //garante que o serviço seja informado na requisicao, sem ser nulo
     private Long servicoId;
 
     // Define quando o atendimento vai acontecer.
-    @NotNull(message = "Data e hora sao obrigatorias")
-    @Future(message = "O agendamento precisa ser em data futura")
+    @NotNull(message = "Data e hora sao obrigatorias")  //garante que a data e hora sejam informados na requisicao, sem ser nulo
+    @Future(message = "O agendamento precisa ser em data futura") //garante que o agendamento nao tenha data passada
     private LocalDateTime dataHora;
 
-    // Campo livre para observacoes.
+    // Campo para observacoes do agendamento
     private String observacoes;
 
-    // Construtor vazio para o Jackson converter JSON em objeto.
+    // Construtor vazio p instanciar o objeto. Instanciar = criar um objeto a partir da classe, alocando memoria para ele.
+    //Jackson = biblioteca que converte JSON em objetos Java e vice-versa.
     public AgendamentoRequest() {
     }
 

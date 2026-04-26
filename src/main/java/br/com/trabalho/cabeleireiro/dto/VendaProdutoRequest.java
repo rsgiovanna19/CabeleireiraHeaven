@@ -1,23 +1,26 @@
+//importando pacotes necessários para a classe de requisição da venda de produto
 package br.com.trabalho.cabeleireiro.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
-// Este objeto representa os dados enviados para vender um produto.
+//DTO = Data Transfer Object, ou seja, um objeto usado para transferir dados entre camadas da aplicação
+//Este objeto representa os dados enviados para vender um produto
+
 public class VendaProdutoRequest {
-    // Cliente que esta comprando.
-    @NotNull(message = "Cliente e obrigatorio")
+    // Cliente que esta comprando
+    @NotNull(message = "Cliente é obrigatorio")    //evita que o cliente seja nulo. Preciso de um usuário para comprar o produto
     private Long clienteId;
 
     // Produto escolhido.
-    @NotNull(message = "Produto e obrigatorio")
+    @NotNull(message = "Produto é obrigatorio") //evita que o produto seja nulo.
     private Long produtoId;
 
     // Quantidade comprada.
-    @Min(value = 1, message = "Quantidade minima e 1")
+    @Min(value = 1, message = "Quantidade minima é 1")  //necessário no minimo 1 produto para ter uma compra
     private int quantidade;
 
-    // Construtor vazio para conversao de JSON.
+    // Construtor vazio para conversao de JSON para objeto funcionar sem erros
     public VendaProdutoRequest() {
     }
 

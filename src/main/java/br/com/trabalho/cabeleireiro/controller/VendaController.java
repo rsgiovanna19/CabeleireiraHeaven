@@ -1,3 +1,5 @@
+//importação dos pacotes necessários para o controller de vendas do salão heaven
+
 package br.com.trabalho.cabeleireiro.controller;
 
 import org.springframework.http.HttpStatus;
@@ -12,22 +14,21 @@ import br.com.trabalho.cabeleireiro.dto.VendaResumoResponse;
 import br.com.trabalho.cabeleireiro.service.VendaService;
 import jakarta.validation.Valid;
 
-// Controller responsavel pelas requisicoes de venda de produtos.
+// Controller de vendas = controla as vendas de produtos do salão, recebendo os pedidos de venda e devolvendo o resumo calculado
 @RestController
 @RequestMapping("/vendas")
 public class VendaController {
 
     private final VendaService vendaService;
 
-    // Recebe o service que processa as vendas.
+    // recebendo o vendasService com a lógica de negócio
     public VendaController(VendaService vendaService) {
         this.vendaService = vendaService;
     }
-
-    // Endpoint POST /vendas/produtos.
-    // Recebe o pedido de venda e devolve o resumo calculado.
+    
+    //POST -> nova venda de produto, recebendo os dados necessários para a venda, como o id do cliente, id do produto e quantidade
     @PostMapping("/produtos")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED) //se a venda for realizada com sucesso, retorna o status 201
     public VendaResumoResponse venderProduto(@Valid @RequestBody VendaProdutoRequest request) {
         return vendaService.venderProduto(request);
     }

@@ -1,8 +1,14 @@
-package br.com.trabalho.cabeleireiro.dto;
+//importa os pacotes necessários para a classe de resposta do resumo da venda
 
+package br.com.trabalho.cabeleireiro.dto;
 import java.math.BigDecimal;
 
-// Este objeto e a resposta pronta para o usuario depois de uma venda.
+//DTO = Data Transfer Object, ou seja, um objeto usado para transferir dados entre camadas da aplicação
+// Este objeto é a resposta pronta para o usuario depois de uma venda.
+
+// Essa classe representa a resposta que o sistema envia depois que um produto é vendido.
+// Ela contém informações sobre o item vendido, a quantidade, o subtotal antes dos descontos,
+// o desconto aplicado, o valor total da compra e a categoria do cliente.
 public class VendaResumoResponse {
     private String item;
     private int quantidade;

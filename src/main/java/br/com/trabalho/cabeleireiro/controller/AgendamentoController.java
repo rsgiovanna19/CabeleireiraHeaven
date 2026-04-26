@@ -1,3 +1,8 @@
+//pacotes e importacoes necessárias
+//o agendamento controller é responsável pelas requisicoes http sobre agendamentos
+//le, deleta, cria ou modifica os agendamentos 
+
+//ps: controller recebe a lógica do service. O controller recebe e envia dados, chamando o service p processar as regras de negócio.
 package br.com.trabalho.cabeleireiro.controller;
 
 import java.util.List;
@@ -18,7 +23,7 @@ import br.com.trabalho.cabeleireiro.model.Agendamento;
 import br.com.trabalho.cabeleireiro.service.AgendamentoService;
 import jakarta.validation.Valid;
 
-// Porta de entrada HTTP para os agendamentos.
+// Porta de entrada HTTP para os agendamentos
 @RestController
 @RequestMapping("/agendamentos")
 public class AgendamentoController {
@@ -26,36 +31,37 @@ public class AgendamentoController {
     private final AgendamentoService agendamentoService;
 
     // Recebe o service que cuida das regras da agenda.
+    //as regras, descritas no readme, estão no service. o controlle precisa delas para funcionar com as regras de negócio.
     public AgendamentoController(AgendamentoService agendamentoService) {
         this.agendamentoService = agendamentoService;
     }
 
-    // Endpoint GET /agendamentos.
+    // GET para agendamentos - conseguimos ler todos os agendamentos
     @GetMapping
     public List<Agendamento> listar() {
         return agendamentoService.listarTodos();
     }
 
-    // Endpoint GET /agendamentos/{id}.
+    // GET para agendamentos por ID - leitura dos agendamentos por ID
     @GetMapping("/{id}")
     public Agendamento buscarPorId(@PathVariable Long id) {
         return agendamentoService.buscarPorId(id);
     }
 
-    // Endpoint POST /agendamentos.
+    // POST para agendamentos - cria um novo agendamento
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Agendamento criar(@Valid @RequestBody AgendamentoRequest request) {
         return agendamentoService.criar(request);
     }
 
-    // Endpoint PUT /agendamentos/{id}.
+    // PUT para agendamentos - atualiza um agendamento que já existe, obviamente, por ID
     @PutMapping("/{id}")
     public Agendamento atualizar(@PathVariable Long id, @Valid @RequestBody AgendamentoRequest request) {
         return agendamentoService.atualizar(id, request);
     }
 
-    // Endpoint DELETE /agendamentos/{id}.
+    // DELETE para agendamentos - deletar um agendamento por id
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id) {

@@ -1,3 +1,5 @@
+//imports necessários
+
 package br.com.trabalho.cabeleireiro.controller;
 
 import java.util.List;
@@ -17,50 +19,44 @@ import br.com.trabalho.cabeleireiro.model.Cliente;
 import br.com.trabalho.cabeleireiro.service.ClienteService;
 import jakarta.validation.Valid;
 
-// Controller e a porta de entrada HTTP.
-// Esta classe recebe requisicoes da internet para a entidade cliente.
+// o controller cliente recebe as requisições sobre os clientes
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;
 
-    // Recebe o service responsavel pelas regras de negocio.
-    public ClienteController(ClienteService clienteService) {
+    // Recebendo o clienteService via injeção de dependência, pois necessitamos das regras de negócio para os clientes
+        public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
-    // Endpoint GET /clientes.
-    // Lista todos os clientes.
+    //GET clientes -> lista todos os clientes do sistema
     @GetMapping
     public List<Cliente> listar() {
         return clienteService.listarTodos();
     }
 
-    // Endpoint GET /clientes/{id}.
-    // Busca um cliente especifico.
+    //GET clientes por id -> lista os clientes por id.
     @GetMapping("/{id}")
     public Cliente buscarPorId(@PathVariable Long id) {
         return clienteService.buscarPorId(id);
     }
 
-    // Endpoint POST /clientes.
-    // Cria um novo cliente com base no JSON enviado.
+    //POST clientes -> cria um novo cliente no sistema
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED) //se retornar com sucesso, retorna o status 201
     public Cliente criar(@Valid @RequestBody Cliente cliente) {
         return clienteService.criar(cliente);
     }
 
-    // Endpoint PUT /clientes/{id}.
-    // Atualiza um cliente existente.
+    //PUT clientes por id -> atualiza os clientes via id
     @PutMapping("/{id}")
     public Cliente atualizar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
         return clienteService.atualizar(id, cliente);
     }
 
-    // Endpoint DELETE /clientes/{id}.
-    // Remove um cliente do sistema.
+    // Delete por id -> remove o cliente por id 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id) {
