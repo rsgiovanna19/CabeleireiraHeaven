@@ -4,6 +4,12 @@ API REST em Java para controle de clientes, agendamentos, venda de produtos e ma
 
 Observacao: o enunciado menciona ASP.NET Web API, mas este projeto foi implementado em Java com Spring Boot porque o restante dos requisitos pede Java, JDBC e Jackson.
 
+## Alunos(as)
+Brian Cavalheiro - RGM 34274057
+Giovanna Rosa - RGM 35874716
+Guilherme Tavares - RGM 33428051
+Gustavo Kresko - RGM 27126757
+
 ## Tecnologias
 
 - Java 17
@@ -140,56 +146,3 @@ O banco e iniciado automaticamente pelos arquivos:
 
 - `src/main/resources/schema.sql`
 - `src/main/resources/data.sql`
-
-
-
-## PROJETO - CABELEREIRA HEAVEN
-
-O projeto Cabelereira Heaven trata-se de uma API REST para controle de clientes, agendamentos, venda de produtos e matricula em cursos para profissionais.
-Observacao: o enunciado menciona ASP.NET Web API, mas este projeto foi implementado em Java com Spring Boot porque o restante dos requisitos pede Java, JDBC e Jackson
-Arquitetura em camada. MVC adaptado para API rest (View é o JSON retornado pela API)
-
-## Alunos(as)
-Brian Cavalheiro - RGM 34274057
-Giovanna Rosa - RGM 35874716
-Guilherme Tavares - RGM 33428051
-Gustavo Kresko - RGM 27126757
-
-## Regras de negocio aplicadas no projeto Cabelereira Heaven
-- Agendamento so pode ser feito em data futura.
-- O salao atende entre 08:00 e 19:00. - horário comercial comum na região
-- Nao e permitido agendar o mesmo servico no mesmo horario quando ja existir outro atendimento ativo - evitando conflito de agendamentos
-- Agendamentos para menos de 24 horas ficam com status `CONFIRMADO`; os demais ficam como `AGENDADO` - facilitando a organização dos profissionais da empresa Heaven.
-- Agendamento no sabado recebe acrescimo de 10% - adição de valor comum na região.
-- Cliente profissional recebe 15% de desconto no valor do servico - programa fidelidade
-- Venda de produtos reduz estoque - para gerenciamento de estoque.
-- Cliente profissional recebe 10% de desconto na compra de produtos - programa fidelidade
-- Cursos so podem ser vendidos para clientes marcados como profissionais - programa fidelidade
-- Cursos de nivel iniciante recebem 5% de desconto promocional - programa fidelidade
-
-## Tecnologias
-- Java 17
-- Spring Boot
-- Spring Web
-- Spring JDBC
-- H2 Database
-- Jackson
-
-## Entidades principais
-- `Cliente`
-- `Agendamento`
-Relacionamento: `Agendamento` possui `clienteId` e `servicoId`, relacionando cliente e servico no banco 
-
-## Como executar
-
-```bash
-mvn spring-boot:run
-```
-API em `http://localhost:8080`
-Console H2: `http://localhost:8080/h2-console`
-Swagger UI: `http://localhost:8080/swagger-ui/index.html`
-OpenAPI JSON: `http://localhost:8080/v3/api-docs`
-
-- JDBC URL: `jdbc:h2:mem:cabeleireirodb`
-- User: `sa`
-- Password: vazio
