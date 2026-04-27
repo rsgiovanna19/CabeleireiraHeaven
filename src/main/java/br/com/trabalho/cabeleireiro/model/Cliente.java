@@ -13,7 +13,7 @@ public class Cliente {
     private String nome;
 
     // Telefone para contato.
-    @NotBlank(message = "Telefone e obrigatorio")
+    @NotBlank(message = "Telefone e obrigatorio")   //notBlank = nao pode ficar vazio ou nulo.
     private String telefone;
 
     // Email para cadastro e comunicacao.

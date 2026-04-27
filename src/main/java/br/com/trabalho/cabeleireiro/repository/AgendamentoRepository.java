@@ -1,3 +1,5 @@
+//importando pacotes necessários para a classe do repositório de agendamento
+
 package br.com.trabalho.cabeleireiro.repository;
 
 import java.sql.PreparedStatement;
@@ -11,6 +13,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+
+//importa o modelo dos agendamentos e agendamento status para usar na consulta e manipulacao dos 
+//dados de agendamento no banco de dados
 import br.com.trabalho.cabeleireiro.model.Agendamento;
 import br.com.trabalho.cabeleireiro.model.AgendamentoStatus;
 
@@ -20,7 +25,7 @@ public class AgendamentoRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-    // Recebe a ferramenta que executa SQL no banco.
+    // Recebe a ferramenta que executa SQL no banco
     public AgendamentoRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }

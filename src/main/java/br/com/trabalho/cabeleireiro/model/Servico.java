@@ -22,6 +22,8 @@ public class Servico {
         this.categoria = categoria;
     }
 
+    //getters e setters para acessar e modificar os atributos do servico
+
     // Devolve o codigo do servico.
     public Long getId() {
         return id;

@@ -1,6 +1,7 @@
 package br.com.trabalho.cabeleireiro.model;
 
-// Lista os estados possiveis de um agendamento.
+//classe apenas para representar os status possiveis de um agendamento, como agendado, confirmado, concluido ou cancelado. 
+// Facilita a organizacao e o controle dos agendamentos no sistema, listando os possiveis estados 
 public enum AgendamentoStatus {
     AGENDADO,
     CONFIRMADO,

@@ -1,7 +1,11 @@
-package br.com.trabalho.cabeleireiro.model;
+//imports necessários para a aplicação
+package br.com.trabalho.cabeleireiro.model; //importa o cabeleireiro.model, onde estao as classes de modelo.
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+
+//construtores
 
 // Representa a marcacao de um atendimento no salao.
 // Ele liga um cliente a um servico em uma data e hora.
@@ -30,32 +34,34 @@ public class Agendamento {
         this.valorCobrado = valorCobrado;
     }
 
-    // Devolve o codigo do agendamento.
+
+//getters e setters para acessar e modificar os atributos do agendamento
+    // Devolve o codigo do agendamento por id
     public Long getId() {
         return id;
     }
 
-    // Altera o codigo do agendamento.
+    // Altera o codigo do agendamento por id
     public void setId(Long id) {
         this.id = id;
     }
 
-    // Devolve o codigo do cliente ligado ao agendamento.
+    // Devolve o codigo do cliente ligado ao agendamento por id
     public Long getClienteId() {
         return clienteId;
     }
 
-    // Altera o cliente ligado ao agendamento.
+    // Altera o cliente ligado ao agendamento por id
     public void setClienteId(Long clienteId) {
         this.clienteId = clienteId;
     }
 
-    // Devolve o codigo do servico ligado ao agendamento.
+    // Devolve o codigo do servico ligado ao agendamento por id
     public Long getServicoId() {
         return servicoId;
     }
 
-    // Altera o servico ligado ao agendamento.
+    // Altera o servico ligado ao agendamento por id
     public void setServicoId(Long servicoId) {
         this.servicoId = servicoId;
     }

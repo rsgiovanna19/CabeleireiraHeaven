@@ -23,6 +23,8 @@ public class Produto {
         this.categoria = categoria;
     }
 
+    //getters e setters para acessar e modificar os atributos do produto
+
     // Devolve o codigo do produto.
     public Long getId() {
         return id;

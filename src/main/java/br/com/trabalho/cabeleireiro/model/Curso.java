@@ -1,5 +1,6 @@
-package br.com.trabalho.cabeleireiro.model;
+//importando pacotes necessários para a classe do modelo curso. 
 
+package br.com.trabalho.cabeleireiro.model;
 import java.math.BigDecimal;
 
 // Representa um curso vendido para profissionais da area.
