@@ -4,14 +4,21 @@ API REST em Java para controle de clientes, agendamentos, venda de produtos e ma
 
 Observacao: o enunciado menciona ASP.NET Web API, mas este projeto foi implementado em Java com Spring Boot porque o restante dos requisitos pede Java, JDBC e Jackson.
 
+## Integrantes
+
+- Preencher com os nomes da equipe
+
 ## Tecnologias
 
 - Java 17
 - Spring Boot
 - Spring Web
 - Spring JDBC
+- Spring AMQP
 - H2 Database
 - Jackson
+- RabbitMQ
+- ViaCEP
 
 ## Regras de negocio aplicadas
 
@@ -25,6 +32,8 @@ Observacao: o enunciado menciona ASP.NET Web API, mas este projeto foi implement
 - Cliente profissional recebe 10% de desconto na compra de produtos.
 - Cursos so podem ser vendidos para clientes marcados como profissionais.
 - Cursos de nivel iniciante recebem 5% de desconto promocional.
+- Quando o cliente informa CEP, o sistema consulta a API ViaCEP e preenche o endereco automaticamente.
+- Ao criar um agendamento, a API publica uma mensagem no RabbitMQ e um consumidor interno processa o evento de forma assincrona.
 
 ## Entidades principais
 
@@ -39,9 +48,17 @@ Relacionamento: `Agendamento` possui `clienteId` e `servicoId`, relacionando cli
 mvn spring-boot:run
 ```
 
+Para testar a mensageria, suba um RabbitMQ local antes da aplicacao. Exemplo com Docker:
+
+```bash
+docker run -d --hostname rabbit-local --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
 API em `http://localhost:8080`
 
 Console H2: `http://localhost:8080/h2-console`
+
+RabbitMQ Management: `http://localhost:15672`
 
 Swagger UI: `http://localhost:8080/swagger-ui/index.html`
 
@@ -68,6 +85,7 @@ Exemplo `POST /clientes`
   "nome": "Patricia Alves",
   "telefone": "11977776666",
   "email": "patricia@email.com",
+  "cep": "01001000",
   "profissional": false
 }
 ```
@@ -140,3 +158,11 @@ O banco e iniciado automaticamente pelos arquivos:
 
 - `src/main/resources/schema.sql`
 - `src/main/resources/data.sql`
+
+## Parte 2 do trabalho
+
+- API REST principal mantida em Spring Boot
+- Persistencia com JDBC e repositories separados da regra de negocio
+- Integracao externa com ViaCEP no cadastro e atualizacao de clientes
+- Mensageria com RabbitMQ no fluxo de criacao de agendamentos
+- Comunicacao assincrona feita por publicacao e consumo de evento `agendamento.criado`

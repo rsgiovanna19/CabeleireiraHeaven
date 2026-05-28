@@ -1,8 +1,8 @@
 -- Insere clientes iniciais para o sistema ja abrir com dados.
-insert into clientes (nome, telefone, email, profissional) values
-('Ana Souza', '11999998888', 'ana@cliente.com', false),
-('Bruno Colorista', '11988887777', 'bruno@pro.com', true),
-('Camila Lopes', '21977776666', 'camila@cliente.com', false);
+insert into clientes (nome, telefone, email, cep, logradouro, bairro, cidade, uf, profissional) values
+('Ana Souza', '11999998888', 'ana@cliente.com', '01001000', 'Praca da Se', 'Se', 'Sao Paulo', 'SP', false),
+('Bruno Colorista', '11988887777', 'bruno@pro.com', '20040002', 'Rua da Quitanda', 'Centro', 'Rio de Janeiro', 'RJ', true),
+('Camila Lopes', '21977776666', 'camila@cliente.com', '30140071', 'Avenida Afonso Pena', 'Centro', 'Belo Horizonte', 'MG', false);
 
 -- Insere servicos iniciais do salao.
 insert into servicos (nome, preco_base, categoria) values

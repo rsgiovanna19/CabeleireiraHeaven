@@ -4,6 +4,11 @@ create table clientes (
     nome varchar(120) not null,
     telefone varchar(20) not null,
     email varchar(120),
+    cep varchar(9),
+    logradouro varchar(120),
+    bairro varchar(80),
+    cidade varchar(80),
+    uf varchar(2),
     profissional boolean not null
 );
 

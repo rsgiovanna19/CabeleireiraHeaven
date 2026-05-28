@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.trabalho.cabeleireiro.dto.AgendamentoRequest;
+import br.com.trabalho.cabeleireiro.dto.AgendamentoCriadoEvent;
 import br.com.trabalho.cabeleireiro.exception.BusinessException;
 import br.com.trabalho.cabeleireiro.exception.ResourceNotFoundException;
 import br.com.trabalho.cabeleireiro.model.Agendamento;
@@ -27,13 +28,16 @@ public class AgendamentoService {
     private final AgendamentoRepository agendamentoRepository;
     private final ClienteRepository clienteRepository;
     private final ServicoRepository servicoRepository;
+    // Responsavel por enviar a mensagem depois que o agendamento e salvo.
+    private final AgendamentoPublisher agendamentoPublisher;
 
     // Recebe os repositorios necessarios para validar cliente, servico e agenda.
     public AgendamentoService(AgendamentoRepository agendamentoRepository, ClienteRepository clienteRepository,
-            ServicoRepository servicoRepository) {
+            ServicoRepository servicoRepository, AgendamentoPublisher agendamentoPublisher) {
         this.agendamentoRepository = agendamentoRepository;
         this.clienteRepository = clienteRepository;
         this.servicoRepository = servicoRepository;
+        this.agendamentoPublisher = agendamentoPublisher;
     }
 
     // Lista todos os agendamentos.
@@ -84,7 +88,10 @@ public class AgendamentoService {
                 valorFinal);
 
         if (id == null) {
-            return agendamentoRepository.save(agendamento);
+            Agendamento salvo = agendamentoRepository.save(agendamento);
+            // So publica evento quando o agendamento e criado.
+            publicarEventoCriacao(salvo);
+            return salvo;
         }
         return agendamentoRepository.update(agendamento);
     }
@@ -119,5 +126,16 @@ public class AgendamentoService {
             return AgendamentoStatus.CONFIRMADO;
         }
         return AgendamentoStatus.AGENDADO;
+    }
+
+    private void publicarEventoCriacao(Agendamento agendamento) {
+        // Monta a mensagem com os dados principais do agendamento.
+        agendamentoPublisher.publicarCriacao(new AgendamentoCriadoEvent(
+                agendamento.getId(),
+                agendamento.getClienteId(),
+                agendamento.getServicoId(),
+                agendamento.getDataHora(),
+                agendamento.getValorCobrado(),
+                agendamento.getStatus().name()));
     }
 }
