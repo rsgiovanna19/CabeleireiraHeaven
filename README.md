@@ -6,7 +6,10 @@ Observacao: o enunciado menciona ASP.NET Web API, mas este projeto foi implement
 
 ## Integrantes
 
-- Preencher com os nomes da equipe
+Brian Cavalheiro - RGM 34274057 
+Giovanna Rosa - RGM 35874716 
+Guilherme Tavares - RGM 33428051 
+Gustavo Kresko - RGM 27126757
 
 ## Tecnologias
 
