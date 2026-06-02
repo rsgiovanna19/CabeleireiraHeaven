@@ -2,3 +2,6 @@ target/
 .vscode/
 .idea/
 *.iml
+logs/
+mvn-run.out
+mvn-run.err
